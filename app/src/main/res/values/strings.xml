@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MultiViewHolder</string>
+    <string name="abc">Please, select a card you are willing to do the\nmoney transfer with or add a new card\nusing the plus button below.</string>
+</resources>
