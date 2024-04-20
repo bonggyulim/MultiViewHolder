@@ -2,16 +2,18 @@ package com.example.multiviewholder.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
+import com.example.multiviewholder.R
 import com.example.multiviewholder.data.CardInfo
 import com.example.multiviewholder.data.DecimalFormat
 import com.example.multiviewholder.databinding.ActivityDetailBinding
 
-class DetailActivity : AppCompatActivity() {
-    private val binding : ActivityDetailBinding by lazy {
-        ActivityDetailBinding.inflate(layoutInflater)
-    }
 
+class DetailActivity : AppCompatActivity() {
+    private val binding: ActivityDetailBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_detail) }
     private val cardViewModel by viewModels<CardViewModel> {
         CardViewModelFactory()
     }
@@ -21,19 +23,33 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        // 메인에서 CardInfo 인스턴스 받아오기
-        val cardItem = intent.getParcelableExtra<CardInfo>(EXTRA_CARD)
+        var cardItem = intent.getParcelableExtra<CardInfo>(EXTRA_CARD)
+        val itemCount = intent.getIntExtra("itemCount", 0)
 
-        // 메인에서 position을 받아와서 뷰모델에서 position으로 CardInfo 인스턴스 반환
-        val position = intent.getIntExtra("position", 0)
-        val cardData = cardViewModel.getCardPosition(position)
+        var currentPosition = cardItem?.position
 
-        binding.name.text = "이름 : ${cardItem?.name}"
-        binding.cardnumber.text = "카드번호 : ${cardItem?.cardNumber}"
-        binding.expirationDate.text = "유효기간 : ${cardData?.expirationDate?.get(0).toString()}"
-        binding.expirationDate.append(" / ${cardData?.expirationDate?.get(1).toString()}")
-        binding.price.text = "가격 : ${cardData?.price?.let { DecimalFormat.decimalFormat(it) }}"
+        if (currentPosition != null) {
+            binding.cardinfo = cardItem
+        }
+
+        binding.nextCard.setOnClickListener {
+            if (currentPosition != null && itemCount - 1 > currentPosition) {
+                binding.cardinfo = cardViewModel.getCardData(currentPosition + 1)
+                currentPosition++
+            } else {
+                Toast.makeText(this, "다음 카드가 없습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.beforeCard.setOnClickListener {
+            if (currentPosition != null && currentPosition > 0) {
+                binding.cardinfo = cardViewModel.getCardData(currentPosition - 1)
+                currentPosition--
+            } else {
+                Toast.makeText(this, "이전 카드가 없습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 }

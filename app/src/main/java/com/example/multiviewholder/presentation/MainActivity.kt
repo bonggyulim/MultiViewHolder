@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle().apply {
             putParcelable(DetailActivity.EXTRA_CARD, cardInfo)
         }
-        intent.putExtra("position", cardInfo.position)
+        intent.putExtra("itemCount", adapter.itemCount)
         intent.putExtras(bundle)
         startActivity(intent)
     }

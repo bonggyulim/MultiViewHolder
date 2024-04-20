@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.multiviewholder.data.CardInfo
 import com.example.multiviewholder.data.DataSource
-import com.example.multiviewholder.data.MultiViewEnum
 
 class CardViewModel(val dataSource: DataSource): ViewModel() {
-    val cardLiveData = dataSource.getCardList()
+    var cardLiveData = dataSource.getCardList()
 
-    fun getCardPosition(position: Int) : CardInfo {
+    fun getCardData(position: Int): CardInfo{
         return cardLiveData.get(position)
     }
 }

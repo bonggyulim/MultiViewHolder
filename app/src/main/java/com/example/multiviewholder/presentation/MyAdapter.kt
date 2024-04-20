@@ -21,8 +21,8 @@ class MyAdapter(private val onClick: (CardInfo) -> Unit): RecyclerView.Adapter<R
             binding.apply {
                 name.text = cardInfo.name
                 cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate.joinToString()
-                price.text = cardInfo.price.toString()
+                expirationDate.text = cardInfo.expirationDate
+                price.text = cardInfo.price
             }
         }
     }
@@ -32,8 +32,8 @@ class MyAdapter(private val onClick: (CardInfo) -> Unit): RecyclerView.Adapter<R
             binding.apply {
                 name.text = cardInfo.name
                 cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate.joinToString()
-                price.text = cardInfo.price.toString()
+                expirationDate.text = cardInfo.expirationDate
+                price.text = cardInfo.price
             }
         }
     }
@@ -43,8 +43,8 @@ class MyAdapter(private val onClick: (CardInfo) -> Unit): RecyclerView.Adapter<R
             binding.apply {
                 name.text = cardInfo.name
                 cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate.joinToString()
-                price.text = cardInfo.price.toString()
+                expirationDate.text = cardInfo.expirationDate
+                price.text = cardInfo.price
             }
         }
     }

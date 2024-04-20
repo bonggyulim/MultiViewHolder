@@ -8,6 +8,6 @@ data class CardInfo(
     val position: Int,
     val name: String,
     val cardNumber: String,
-    val expirationDate: List<Int>,
-    val price: Double,
+    val expirationDate: String,
+    val price: String,
 ) : Parcelable
