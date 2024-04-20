@@ -1,4 +1,4 @@
-package com.example.multiviewholder
+package com.example.multiviewholder.data
 
 class DataSource {
     companion object {
@@ -15,5 +15,4 @@ class DataSource {
     fun getCardList(): List<CardInfo> {
         return cardList()
     }
-
 }

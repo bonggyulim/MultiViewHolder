@@ -1,4 +1,4 @@
-package com.example.multiviewholder
+package com.example.multiviewholder.data
 
 import android.graphics.Rect
 import android.view.View

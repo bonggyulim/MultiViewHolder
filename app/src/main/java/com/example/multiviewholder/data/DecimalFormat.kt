@@ -1,4 +1,4 @@
-package com.example.multiviewholder
+package com.example.multiviewholder.data
 
 import java.text.DecimalFormat
 
