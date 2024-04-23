@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.example.multiviewholder.R
 import com.example.multiviewholder.data.CardInfo
-import com.example.multiviewholder.data.DecimalFormat
 import com.example.multiviewholder.databinding.ActivityDetailBinding
 
 

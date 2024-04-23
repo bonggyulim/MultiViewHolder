@@ -1,4 +1,4 @@
-package com.example.multiviewholder.data
+package com.example.multiviewholder.presentation
 
 enum class MultiViewEnum(val viewType : Int) {
     BLUE(0),

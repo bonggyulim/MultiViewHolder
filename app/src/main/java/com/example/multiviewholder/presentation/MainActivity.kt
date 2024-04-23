@@ -6,8 +6,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.multiviewholder.data.CardInfo
-import com.example.multiviewholder.data.DecimalFormat
-import com.example.multiviewholder.data.GridSpaceItemDecoration
 import com.example.multiviewholder.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.multiviewholder.data.CardInfo
-import com.example.multiviewholder.data.DecimalFormat
-import com.example.multiviewholder.data.MultiViewEnum
 import com.example.multiviewholder.databinding.ItemRecyclerviewDefaultBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewOrangeBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewSkyBinding
