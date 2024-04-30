@@ -1,4 +1,4 @@
-package com.example.multiviewholder.presentation
+package com.example.multiviewholder.presentation.util
 
 import android.graphics.Rect
 import android.view.View

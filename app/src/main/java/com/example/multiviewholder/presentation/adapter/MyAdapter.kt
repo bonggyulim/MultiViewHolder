@@ -1,67 +1,77 @@
-package com.example.multiviewholder.presentation
+package com.example.multiviewholder.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.multiviewholder.data.CardInfo
 import com.example.multiviewholder.databinding.ItemRecyclerviewDefaultBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewOrangeBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewSkyBinding
-import java.lang.RuntimeException
+import com.example.multiviewholder.databinding.UnknownItemBinding
+import com.example.multiviewholder.presentation.model.CardInfoModel
 
 
-class MyAdapter(private val onClick: (CardInfo) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var cardList = listOf<CardInfo>()
+    var cardList = listOf<CardInfoModel>()
+
+    interface ItemClick {
+        fun onClick(cardInfoModel: CardInfoModel)
+    }
+    var  itemClick: ItemClick? = null
+
     class DefaultViewHolder(private val binding: ItemRecyclerviewDefaultBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cardInfo: CardInfo) {
+        fun bind(cardInfoModel: CardInfoModel) {
             binding.apply {
-                name.text = cardInfo.name
-                cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate
-                price.text = cardInfo.price
+                name.text = cardInfoModel.name
+                cardNumber.text = cardInfoModel.cardNumber
+                expirationDate.text = cardInfoModel.expirationDate
+                price.text = cardInfoModel.price
             }
         }
     }
 
     class OrangeCardViewHolder(private val binding: ItemRecyclerviewOrangeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cardInfo: CardInfo) {
+        fun bind(cardInfoModel: CardInfoModel) {
             binding.apply {
-                name.text = cardInfo.name
-                cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate
-                price.text = cardInfo.price
+                name.text = cardInfoModel.name
+                cardNumber.text = cardInfoModel.cardNumber
+                expirationDate.text = cardInfoModel.expirationDate
+                price.text = cardInfoModel.price
             }
         }
     }
 
     class LightBlueCardViewHolder(private val binding: ItemRecyclerviewSkyBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cardInfo: CardInfo) {
+        fun bind(cardInfoModel: CardInfoModel) {
             binding.apply {
-                name.text = cardInfo.name
-                cardNumber.text = cardInfo.cardNumber
-                expirationDate.text = cardInfo.expirationDate
-                price.text = cardInfo.price
+                name.text = cardInfoModel.name
+                cardNumber.text = cardInfoModel.cardNumber
+                expirationDate.text = cardInfoModel.expirationDate
+                price.text = cardInfoModel.price
             }
         }
     }
 
+    class UnknownViewHolder(binding: UnknownItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind() = Unit
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View?
-        return when (viewType) {
-            MultiViewEnum.BLUE.viewType -> {
+        val multiViewType = MultiViewEnum.entries.find { it.viewType == viewType }
+        return when (multiViewType) {
+            MultiViewEnum.BLUE -> {
                 DefaultViewHolder(ItemRecyclerviewDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-            MultiViewEnum.ORANGE.viewType -> {
+            MultiViewEnum.ORANGE -> {
                 OrangeCardViewHolder(ItemRecyclerviewOrangeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-            MultiViewEnum.LIGHTBLUE.viewType -> {
+            MultiViewEnum.LIGHTBLUE -> {
                 LightBlueCardViewHolder(ItemRecyclerviewSkyBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-            else -> throw RuntimeException("에러")
-
+            else -> {
+                UnknownViewHolder(UnknownItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
         }
     }
 
@@ -70,39 +80,33 @@ class MyAdapter(private val onClick: (CardInfo) -> Unit): RecyclerView.Adapter<R
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         val cardPosition = cardList[position]
-
         when (holder.itemViewType) {
             MultiViewEnum.BLUE.viewType -> {
                 val blueHolder = holder as DefaultViewHolder
                 blueHolder.bind(cardPosition)
                 holder.itemView.setOnClickListener {
-                    onClick(cardPosition)
+                    itemClick?.onClick(cardPosition)
                 }
             }
             MultiViewEnum.ORANGE.viewType -> {
                 val orangeHolder = holder as OrangeCardViewHolder
                 orangeHolder.bind(cardPosition)
                 holder.itemView.setOnClickListener {
-                    onClick(cardPosition)
+                    itemClick?.onClick(cardPosition)
                 }
             }
             MultiViewEnum.LIGHTBLUE.viewType -> {
                 val lightBlueHolder = holder as LightBlueCardViewHolder
                 lightBlueHolder.bind(cardPosition)
                 holder.itemView.setOnClickListener {
-                    onClick(cardPosition)
+                    itemClick?.onClick(cardPosition)
                 }
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> MultiViewEnum.BLUE.viewType
-            1 -> MultiViewEnum.ORANGE.viewType
-            2 -> MultiViewEnum.LIGHTBLUE.viewType
-            else -> throw IllegalAccessException("에러")
-        }
+        return cardList[position].cardViewType.viewType
     }
 
     override fun getItemCount(): Int {
