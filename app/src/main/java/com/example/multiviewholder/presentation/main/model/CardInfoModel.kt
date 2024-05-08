@@ -1,7 +1,7 @@
-package com.example.multiviewholder.presentation.model
+package com.example.multiviewholder.presentation.main.model
 
 import android.os.Parcelable
-import com.example.multiviewholder.presentation.adapter.MultiViewEnum
+import com.example.multiviewholder.presentation.main.adapter.MultiViewEnum
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

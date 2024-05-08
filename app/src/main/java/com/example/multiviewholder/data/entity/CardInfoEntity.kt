@@ -1,6 +1,6 @@
 package com.example.multiviewholder.data.entity
 
-import com.example.multiviewholder.presentation.adapter.MultiViewEnum
+import com.example.multiviewholder.presentation.main.adapter.MultiViewEnum
 
 data class CardInfoEntity(
     val position: Int,

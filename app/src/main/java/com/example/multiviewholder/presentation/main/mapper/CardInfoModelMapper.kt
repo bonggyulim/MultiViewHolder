@@ -1,7 +1,7 @@
-package com.example.multiviewholder.presentation.mapper
+package com.example.multiviewholder.presentation.main.mapper
 
 import com.example.multiviewholder.data.entity.CardInfoEntity
-import com.example.multiviewholder.presentation.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.model.CardInfoModel
 
 // 타입 변경하는 코드
 fun List<CardInfoEntity>.asCardInfoModel() : List<CardInfoModel> {

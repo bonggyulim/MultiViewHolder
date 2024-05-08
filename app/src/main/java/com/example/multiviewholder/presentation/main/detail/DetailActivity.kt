@@ -1,9 +1,9 @@
-package com.example.multiviewholder.presentation.detail
+package com.example.multiviewholder.presentation.main.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.multiviewholder.databinding.ActivityDetailBinding
-import com.example.multiviewholder.presentation.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.model.CardInfoModel
 
 
 class DetailActivity : AppCompatActivity() {

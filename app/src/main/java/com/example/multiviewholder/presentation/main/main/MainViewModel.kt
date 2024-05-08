@@ -1,4 +1,4 @@
-package com.example.multiviewholder.presentation.main
+package com.example.multiviewholder.presentation.main.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.multiviewholder.data.database.CardRepositoryImpl
 import com.example.multiviewholder.data.database.DataSource
-import com.example.multiviewholder.presentation.util.SearchRepository
-import com.example.multiviewholder.presentation.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.model.CardInfoModel
+import com.example.multiviewholder.presentation.search.repository.SearchRepository
 
 class MainViewModel(private val searchRepository: SearchRepository): ViewModel() {
     private val _getCardModel: MutableLiveData<List<CardInfoModel>> = MutableLiveData()

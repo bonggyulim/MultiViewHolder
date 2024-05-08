@@ -1,7 +1,7 @@
 package com.example.multiviewholder.data.database
 
 import com.example.multiviewholder.data.entity.CardInfoEntity
-import com.example.multiviewholder.presentation.adapter.MultiViewEnum
+import com.example.multiviewholder.presentation.main.adapter.MultiViewEnum
 
 fun cardList(): List<CardInfoEntity> {
     return listOf(

@@ -1,18 +1,18 @@
-package com.example.multiviewholder.presentation.main
+package com.example.multiviewholder.presentation.main.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.multiviewholder.databinding.ActivityMainBinding
-import com.example.multiviewholder.presentation.util.DecimalFormat
-import com.example.multiviewholder.presentation.detail.DetailActivity
-import com.example.multiviewholder.presentation.detail.DetailActivity.Companion.EXTRA_CARD
-import com.example.multiviewholder.presentation.util.GridSpaceItemDecoration
-import com.example.multiviewholder.presentation.adapter.MyAdapter
-import com.example.multiviewholder.presentation.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.adapter.MyAdapter
+import com.example.multiviewholder.presentation.main.detail.DetailActivity
+import com.example.multiviewholder.presentation.main.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.util.DecimalFormat
+import com.example.multiviewholder.presentation.main.util.GridSpaceItemDecoration
+import com.example.multiviewholder.presentation.search.main.GitHubUserActivity
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.button.setOnClickListener {
+            val intent = Intent(this, GitHubUserActivity::class.java)
+            startActivity(intent)
+        }
 
         initData()
         initViewModel()
@@ -64,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(cardInfoModel: CardInfoModel) {
                 val bundle = Bundle().apply {
-                    putParcelable(EXTRA_CARD, cardInfoModel as Parcelable)
+                    putParcelable(DetailActivity.EXTRA_CARD, cardInfoModel as Parcelable)
                 }
-                intent.putExtra(EXTRA_CARD, bundle)
+                intent.putExtra(DetailActivity.EXTRA_CARD, bundle)
                 startActivity(intent)
             }
         }

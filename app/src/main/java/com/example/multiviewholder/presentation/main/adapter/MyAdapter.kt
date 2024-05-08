@@ -1,4 +1,4 @@
-package com.example.multiviewholder.presentation.adapter
+package com.example.multiviewholder.presentation.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.example.multiviewholder.databinding.ItemRecyclerviewDefaultBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewOrangeBinding
 import com.example.multiviewholder.databinding.ItemRecyclerviewSkyBinding
 import com.example.multiviewholder.databinding.UnknownItemBinding
-import com.example.multiviewholder.presentation.model.CardInfoModel
+import com.example.multiviewholder.presentation.main.model.CardInfoModel
 
 
 class MyAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
